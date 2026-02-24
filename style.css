@@ -2801,3 +2801,162 @@ body .solar_systm .planet .moon {
   body label.menu:nth-of-type(5),
   body label.menu:nth-of-type(6) { bottom: calc(48px + env(safe-area-inset-bottom)); }
 }
+
+/* Force desktop-style layout on mobile (same UI structure as desktop) */
+@media (max-width: 768px) {
+  body {
+    overflow-x: hidden;
+    height: 100vh;
+  }
+
+  /* Keep the desktop scene layout, only scale it down for small screens */
+  body .solar {
+    transform: rotatex(-20deg) scale(0.42) !important;
+    transform-origin: 52% 56% !important;
+    perspective: 800px !important;
+  }
+
+  /* Restore desktop-style planet labels/details */
+  body .solar_systm .planet_description {
+    width: min(620px, 76vw) !important;
+    top: auto !important;
+  }
+  body .solar_systm .planet_description p {
+    display: block !important;
+    font-size: 9px !important;
+    line-height: 18px !important;
+  }
+  body .solar_systm .planet .trajectory,
+  body .solar_systm .planet .moon h2,
+  body .solar_systm .planet .moon h3 {
+    display: block !important;
+  }
+  body .solar_systm .planet .moon {
+    opacity: 0 !important;
+  }
+
+  /* Restore left vertical desktop menu (remove bottom dock/mobile chips) */
+  body label.menu {
+    position: absolute !important;
+    left: 90px !important;
+    width: auto !important;
+    min-height: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    box-sizing: content-box !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    z-index: 2 !important;
+  }
+  body label.menu:after {
+    display: block !important;
+  }
+  body label.menu .preview {
+    width: 30px !important;
+    height: 30px !important;
+    left: auto !important;
+    top: auto !important;
+  }
+  body label.menu .info {
+    left: 50px !important;
+    top: 1px !important;
+    right: auto !important;
+  }
+  body label.menu h2 {
+    font-size: 11px !important;
+    line-height: normal !important;
+    letter-spacing: 2px !important;
+    margin-bottom: 4px !important;
+    white-space: normal !important;
+    overflow: visible !important;
+    text-overflow: clip !important;
+  }
+  body label.menu h2 .pip {
+    display: block !important;
+    height: 9px !important;
+    top: 3px !important;
+  }
+  body label.menu h3 {
+    display: block !important;
+    font-size: 8px !important;
+    letter-spacing: 1px !important;
+    opacity: 0.3 !important;
+  }
+
+  /* Restore desktop menu positioning instead of bottom grid */
+  body label.menu:nth-of-type(1) { top: calc(50vh + 100px + ((14px + 34px) * 1) + 0px - 369px) !important; bottom: auto !important; }
+  body label.menu:nth-of-type(2) { top: calc(50vh + 100px + ((14px + 34px) * 2) + 0px - 369px) !important; bottom: auto !important; }
+  body label.menu:nth-of-type(3) { top: calc(50vh + 100px + ((14px + 34px) * 3) + 0px - 369px) !important; bottom: auto !important; }
+  body label.menu:nth-of-type(4) { top: calc(50vh + 100px + ((14px + 34px) * 4) + 0px - 369px) !important; bottom: auto !important; }
+  body label.menu:nth-of-type(5) { top: calc(50vh + 100px + ((14px + 34px) * 5) + 0px - 369px) !important; bottom: auto !important; }
+  body label.menu:nth-of-type(6) { top: calc(50vh + 100px + ((14px + 34px) * 6) + 0px - 369px) !important; bottom: auto !important; }
+  body label.menu:nth-of-type(7) { top: calc(50vh + 100px + ((14px + 34px) * 7) + 0px - 369px) !important; bottom: auto !important; }
+  body label.menu:nth-of-type(8) { top: calc(50vh + 100px + ((14px + 34px) * 8) + 0px - 369px) !important; bottom: auto !important; }
+  body label.menu:nth-of-type(9) { top: calc(50vh + 100px + ((14px + 34px) * 9) + 0px - 369px) !important; bottom: auto !important; }
+
+  /* Restore desktop side panel instead of bottom sheet */
+  body .panel {
+    position: absolute !important;
+    right: -100vw !important;
+    top: 0 !important;
+    bottom: auto !important;
+    width: min(300px, 78vw) !important;
+    height: 100vh !important;
+    max-height: none !important;
+    transform: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    padding: 10px 24px 0 24px !important;
+    transition: all 0.2s !important;
+  }
+  body .read:checked + label + input + .panel {
+    right: 0 !important;
+    transform: none !important;
+  }
+
+  /* Restore desktop close overlay interaction */
+  body .read:checked + label {
+    width: calc(100% - min(348px, 82vw)) !important;
+    height: 100vh !important;
+    background: rgba(56, 37, 99, 0.38) !important;
+    z-index: 10 !important;
+  }
+  body .read:checked + label::after {
+    left: 0 !important;
+    top: 50% !important;
+    right: 0 !important;
+    transform: translateY(-50%) !important;
+    padding: 0 !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+    font-size: 30px !important;
+    line-height: normal !important;
+  }
+  body label.closeBig {
+    height: 100vh !important;
+  }
+  body label.closeBig::after {
+    font-size: 30px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Slight extra scale for very narrow screens while preserving desktop-style layout */
+  body .solar {
+    transform: rotatex(-20deg) scale(0.34) !important;
+    transform-origin: 54% 54% !important;
+  }
+  body label.menu {
+    left: 56px !important;
+  }
+  body .panel {
+    width: min(280px, 82vw) !important;
+  }
+  body .read:checked + label {
+    width: calc(100% - min(328px, 86vw)) !important;
+  }
+}
